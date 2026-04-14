@@ -11,6 +11,7 @@ import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
+import Login from "./pages/Login";
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
       <Route path={"/about"} component={About} />
       <Route path={"/admin"} component={Admin} />
       <Route path={"/404"} component={NotFound} />
+      <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,5 +1,5 @@
-import "dotenv/config";
-import express from "express";
+import dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });import express from "express";
 import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
@@ -7,6 +7,8 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { registerAdminAuthRoutes } from "./adminAuth"; 
+
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -35,6 +37,7 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
+  registerAdminAuthRoutes(app);
   // tRPC API
   app.use(
     "/api/trpc",

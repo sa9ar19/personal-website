@@ -72,31 +72,34 @@ export default function Admin() {
       </div>
     );
   }
-
   if (!isAuthenticated || user?.role !== "admin") {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1 flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="font-serif text-3xl font-semibold mb-2 text-foreground">
-              Access Denied
-            </h1>
-            <p className="text-muted-foreground mb-6">
-              You need admin privileges to access this page.
-            </p>
-            <button
-              onClick={() => navigate("/")}
-              className="px-6 py-2 bg-primary text-primary-foreground rounded hover:opacity-90 transition-opacity"
-            >
-              Go Home
-            </button>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
+    navigate("/login");
+    return null;
   }
+  // if (!isAuthenticated || user?.role !== "admin") {
+  //   return (
+  //     <div className="min-h-screen flex flex-col">
+  //       <Navbar />
+  //       <main className="flex-1 flex items-center justify-center">
+  //         <div className="text-center">
+  //           <h1 className="font-serif text-3xl font-semibold mb-2 text-foreground">
+  //             Access Denied
+  //           </h1>
+  //           <p className="text-muted-foreground mb-6">
+  //             You need admin privileges to access this page.
+  //           </p>
+  //           <button
+  //             onClick={() => navigate("/")}
+  //             className="px-6 py-2 bg-primary text-primary-foreground rounded hover:opacity-90 transition-opacity"
+  //           >
+  //             Go Home
+  //           </button>
+  //         </div>
+  //       </main>
+  //       <Footer />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen flex flex-col">
