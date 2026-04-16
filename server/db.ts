@@ -1,4 +1,5 @@
 import { eq, desc } from "drizzle-orm";
+<<<<<<< HEAD
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import {
@@ -14,10 +15,24 @@ import { ENV } from './_core/env';
 
 
 let _db: any = null;
+=======
+import { drizzle } from "drizzle-orm/mysql2";
+import {
+  InsertUser, users,
+  destinations, Destination, InsertDestination,
+  galleryPhotos, GalleryPhoto, InsertGalleryPhoto,
+  blogPosts, BlogPost, InsertBlogPost,
+  socialLinks, SocialLink, InsertSocialLink,
+} from "../drizzle/schema";
+import { ENV } from './_core/env';
+
+let _db: ReturnType<typeof drizzle> | null = null;
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 
 export async function getDb() {
   if (!_db && process.env.DATABASE_URL) {
     try {
+<<<<<<< HEAD
       const pool = new Pool({
         connectionString: process.env.DATABASE_URL,
         // Railway PostgreSQL often requires SSL in production
@@ -27,6 +42,11 @@ export async function getDb() {
       console.log("[Database] Connected to PostgreSQL successfully");
     } catch (error) {
       console.error("[Database] Failed to connect to PostgreSQL:", error);
+=======
+      _db = drizzle(process.env.DATABASE_URL);
+    } catch (error) {
+      console.warn("[Database] Failed to connect:", error);
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
       _db = null;
     }
   }
@@ -55,12 +75,16 @@ export async function upsertUser(user: InsertUser): Promise<void> {
     else if (user.openId === ENV.ownerOpenId) { values.role = 'admin'; updateSet.role = 'admin'; }
     if (!values.lastSignedIn) values.lastSignedIn = new Date();
     if (Object.keys(updateSet).length === 0) updateSet.lastSignedIn = new Date();
+<<<<<<< HEAD
     
     // PostgreSQL uses onConflictDoUpdate instead of onDuplicateKeyUpdate
     await db.insert(users).values(values).onConflictDoUpdate({ 
       target: users.openId,
       set: updateSet 
     });
+=======
+    await db.insert(users).values(values).onDuplicateKeyUpdate({ set: updateSet });
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
   } catch (error) {
     console.error("[Database] Failed to upsert user:", error);
     throw error;
@@ -92,9 +116,17 @@ export async function getDestinationById(id: number): Promise<Destination | unde
 export async function createDestination(data: InsertDestination): Promise<Destination> {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
+<<<<<<< HEAD
   // PostgreSQL uses .returning() to get the inserted row
   const result = await db.insert(destinations).values(data).returning();
   return result[0];
+=======
+  const result = await db.insert(destinations).values(data);
+  const id = result[0].insertId as number;
+  const created = await getDestinationById(id);
+  if (!created) throw new Error("Failed to retrieve created destination");
+  return created;
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 }
 
 export async function updateDestination(id: number, data: Partial<InsertDestination>): Promise<void> {
@@ -120,8 +152,16 @@ export async function getPhotosByDestination(destinationId: number): Promise<Gal
 export async function createPhoto(data: InsertGalleryPhoto): Promise<GalleryPhoto> {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
+<<<<<<< HEAD
   const result = await db.insert(galleryPhotos).values(data).returning();
   return result[0];
+=======
+  const result = await db.insert(galleryPhotos).values(data);
+  const id = result[0].insertId as number;
+  const created = await db.select().from(galleryPhotos).where(eq(galleryPhotos.id, id)).limit(1);
+  if (!created[0]) throw new Error("Failed to retrieve created photo");
+  return created[0];
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 }
 
 export async function deletePhoto(id: number): Promise<void> {
@@ -130,6 +170,7 @@ export async function deletePhoto(id: number): Promise<void> {
   await db.delete(galleryPhotos).where(eq(galleryPhotos.id, id));
 }
 
+<<<<<<< HEAD
 // Add this to the bottom of server/db.ts
 export async function updatePhoto(id: number, data: { description: string }): Promise<void> {
   const db = await getDb();
@@ -147,11 +188,17 @@ export async function listAllPhotos() {
 
 // // ── Blog Posts ──────────────────────────────────────────────────────────────
 export async function listBlogPosts() {
+=======
+// ── Blog Posts ──────────────────────────────────────────────────────────────
+
+export async function listBlogPosts(): Promise<BlogPost[]> {
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   return db.select().from(blogPosts).orderBy(desc(blogPosts.publishedAt));
 }
 
+<<<<<<< HEAD
 export async function createBlogPost(data: InsertBlogPost) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
@@ -170,6 +217,8 @@ export async function deleteBlogPost(id: number) {
   await db.delete(blogPosts).where(eq(blogPosts.id, id));
 }
 
+=======
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 export async function getBlogPostById(id: number): Promise<BlogPost | undefined> {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
@@ -177,12 +226,26 @@ export async function getBlogPostById(id: number): Promise<BlogPost | undefined>
   return result[0];
 }
 
+<<<<<<< HEAD
+=======
+export async function createBlogPost(data: InsertBlogPost): Promise<BlogPost> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  const result = await db.insert(blogPosts).values(data);
+  const id = result[0].insertId as number;
+  const created = await getBlogPostById(id);
+  if (!created) throw new Error("Failed to retrieve created blog post");
+  return created;
+}
+
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 export async function updateBlogPost(id: number, data: Partial<InsertBlogPost>): Promise<void> {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   await db.update(blogPosts).set(data).where(eq(blogPosts.id, id));
 }
 
+<<<<<<< HEAD
 
 // Newsletter signup
 export async function createNewsletterSignup(data: InsertNewsletterSignup) {
@@ -241,3 +304,27 @@ export async function createNewsletterSignup(data: InsertNewsletterSignup) {
 //     await db.insert(socialLinks).values(links);
 //   }
 // }
+=======
+export async function deleteBlogPost(id: number): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.delete(blogPosts).where(eq(blogPosts.id, id));
+}
+
+// ── Social Links ────────────────────────────────────────────────────────────
+
+export async function listSocialLinks(): Promise<SocialLink[]> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  return db.select().from(socialLinks).orderBy(socialLinks.order);
+}
+
+export async function updateSocialLinks(links: InsertSocialLink[]): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.delete(socialLinks);
+  if (links.length > 0) {
+    await db.insert(socialLinks).values(links);
+  }
+}
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5

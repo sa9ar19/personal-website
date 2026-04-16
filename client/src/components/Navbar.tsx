@@ -1,4 +1,5 @@
 import { useState } from "react";
+<<<<<<< HEAD
 import { Menu, X, Check, Loader2, Send, Bell } from "lucide-react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
@@ -10,10 +11,21 @@ const NAV_LINKS = [
   { label: "Gallery", href: "/gallery" },
   { label: "Blog", href: "/blogs" },
   { label: "About", href: "/about" },
+=======
+import { Menu, X } from "lucide-react";
+import { useLocation } from "wouter";
+
+const NAV_LINKS = [
+  { label: "Home",    href: "/" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Blog",    href: "/blog" },
+  { label: "About",   href: "/about" },
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+<<<<<<< HEAD
   const [signupOpen, setSignupOpen] = useState(false);
   const [location] = useLocation();
   const { user } = useAuth();
@@ -70,19 +82,77 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-10">
+=======
+  const [location] = useLocation();
+
+  return (
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
+      <div className="container flex items-center justify-between h-16">
+        {/* Logo */}
+        <a href="/" className="font-serif text-2xl font-semibold text-foreground hover:opacity-70 transition-opacity">
+          My Journey
+        </a>
+
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-8">
+          {NAV_LINKS.map(link => (
+            <a
+              key={link.href}
+              href={link.href}
+              className={`text-sm font-medium transition-colors ${
+                location === link.href
+                  ? "text-foreground border-b-2 border-primary pb-1"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="/admin"
+            className="text-sm font-medium px-3 py-1.5 rounded bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+          >
+            Admin
+          </a>
+        </nav>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden p-2 text-foreground hover:bg-secondary rounded transition-colors"
+          onClick={() => setMenuOpen(v => !v)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="md:hidden border-t border-border bg-card">
+          <nav className="container py-4 flex flex-col gap-3">
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
             {NAV_LINKS.map(link => (
               <a
                 key={link.href}
                 href={link.href}
+<<<<<<< HEAD
                 className={`text-sm font-bold uppercase tracking-widest transition-all hover:text-primary ${
                   location === link.href
                     ? "text-primary"
                     : "text-muted-foreground"
+=======
+                onClick={() => setMenuOpen(false)}
+                className={`text-sm font-medium py-2 transition-colors ${
+                  location === link.href
+                    ? "text-foreground border-l-2 border-primary pl-3"
+                    : "text-muted-foreground hover:text-foreground"
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
                 }`}
               >
                 {link.label}
               </a>
             ))}
+<<<<<<< HEAD
 
             {isAdmin ? (
               <a
@@ -253,5 +323,18 @@ export default function Navbar() {
         </div>
       )}
     </>
+=======
+            <a
+              href="/admin"
+              onClick={() => setMenuOpen(false)}
+              className="text-sm font-medium px-3 py-2 rounded bg-primary text-primary-foreground hover:opacity-90 transition-opacity text-center"
+            >
+              Admin
+            </a>
+          </nav>
+        </div>
+      )}
+    </header>
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
   );
 }

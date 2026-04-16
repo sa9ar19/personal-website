@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useAuth } from "@/hooks/useAuth";
+=======
+import { useAuth } from "@/_core/hooks/useAuth";
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,

@@ -1,6 +1,10 @@
 import dotenv from "dotenv";
+<<<<<<< HEAD
 dotenv.config({ path: ".env" });
 import express from "express";
+=======
+dotenv.config({ path: ".env.local" });import express from "express";
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
@@ -8,9 +12,14 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+<<<<<<< HEAD
 import { registerAdminAuthRoutes } from "./adminAuth";
 import cookieParser from "cookie-parser";
 import { ENV } from "./env"; // Import your ENV object
+=======
+import { registerAdminAuthRoutes } from "./adminAuth"; 
+
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -33,11 +42,15 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 
 async function startServer() {
   const app = express();
+<<<<<<< HEAD
 
   const server = createServer(app);
 
   app.use(cookieParser());
 
+=======
+  const server = createServer(app);
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));

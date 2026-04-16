@@ -71,7 +71,11 @@ export default function Home() {
             <div className="animate-fade-up delay-200 flex flex-col items-center gap-4">
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <button
+<<<<<<< HEAD
                   onClick={() => navigate("/blogs")}
+=======
+                  onClick={() => navigate("/blog")}
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
                   className="px-8 py-3 border border-white/50 bg-white/10 text-white font-medium rounded hover:bg-white/20 transition-colors"
                 >
                   Read Stories
@@ -97,6 +101,7 @@ export default function Home() {
         <div className="divider-line my-16" />
 
         {/* Featured Section */}
+<<<<<<< HEAD
         {/* Featured Section - Container adjusts to Image Size */}
         <section className="py-24 md:py-32 bg-background overflow-hidden">
           <div className="container mx-auto px-6">
@@ -118,11 +123,25 @@ export default function Home() {
                 </div>
 
                 <p className="text-xl text-muted-foreground leading-relaxed font-medium">
+=======
+        <section className="section-padding">
+          <div className="container">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
+                  About This Journey
+                </p>
+                <h2 className="font-serif text-4xl font-semibold mb-4 text-foreground">
+                  Capturing Moments, Sharing Stories
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
                   This is my personal space where I document my adventures
                   through photography and writing. From mountain peaks to hidden
                   valleys, each photo carries a story, and every blog post
                   reflects my experiences and learnings from the road.
                 </p>
+<<<<<<< HEAD
 
                 <button
                   onClick={() => navigate("/about")}
@@ -146,6 +165,19 @@ export default function Home() {
 
                 {/* Decorative Background Glow */}
                 <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10" />
+=======
+                <button
+                  onClick={() => navigate("/about")}
+                  className="text-primary font-medium hover:opacity-70 transition-opacity flex items-center gap-2"
+                >
+                  Learn More About Me <ArrowRight size={16} />
+                </button>
+              </div>
+              <div className="h-96 bg-gradient-to-br from-muted to-secondary rounded-lg flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <img src="/images/aboutMe.jpg" alt="" />
+                </div>
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
               </div>
             </div>
           </div>

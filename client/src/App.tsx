@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
 import GalleryDetail from "./pages/GalleryDetail";
 import Blog from "./pages/Blog";
+<<<<<<< HEAD
 import ViewBlog from "./pages/ViewBlog";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
@@ -17,6 +18,12 @@ import EditDestination from "./pages/EditDestination";
 import DestinationDetail from "./pages/DestinationDetail";
 import ViewDestination from "./pages/ViewDestination";
 
+=======
+import BlogDetail from "./pages/BlogDetail";
+import About from "./pages/About";
+import Admin from "./pages/Admin";
+import Login from "./pages/Login";
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 
 function Router() {
   return (
@@ -24,16 +31,24 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/gallery"} component={Gallery} />
       <Route path={"/gallery/:id"} component={GalleryDetail} />
+<<<<<<< HEAD
       <Route path={"/blogs"} component={Blog} />
       <Route path={"/blogs/:id"} component={ViewBlog} />
+=======
+      <Route path={"/blog"} component={Blog} />
+      <Route path={"/blog/:id"} component={BlogDetail} />
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
       <Route path={"/about"} component={About} />
       <Route path={"/admin"} component={Admin} />
       <Route path={"/404"} component={NotFound} />
       <Route path="/login" component={Login} />
+<<<<<<< HEAD
       <Route path="/destinations" component={Destinations} />
       {/* <Route path="/destinations/:slug" component={EditDestination} /> */}
       <Route path="/destinations/:id" component={ViewDestination} />
       
+=======
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
       <Route component={NotFound} />
     </Switch>
   );

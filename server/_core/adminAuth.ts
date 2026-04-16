@@ -4,14 +4,21 @@ import { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 import { getSessionCookieOptions } from "./cookies";
 import * as db from "../db";
 
+<<<<<<< HEAD
 import { ENV } from "./env"; // Import your ENV object
 
 const secret = new TextEncoder().encode(ENV.cookieSecret);
+=======
+const secret = new TextEncoder().encode(
+  process.env.ADMIN_SECRET || "fallback-secret-change-me"
+);
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 
 export function registerAdminAuthRoutes(app: Express) {
   app.post("/api/auth/login", async (req: Request, res: Response) => {
     const { username, password } = req.body;
 
+<<<<<<< HEAD
     console.log("[Auth] Login attempt:", { 
       username, 
       expectedUsername: process.env.ADMIN_USERNAME,
@@ -22,6 +29,9 @@ export function registerAdminAuthRoutes(app: Express) {
     if (
       !process.env.ADMIN_USERNAME ||
       !process.env.ADMIN_PASSWORD ||
+=======
+    if (
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
       username !== process.env.ADMIN_USERNAME ||
       password !== process.env.ADMIN_PASSWORD
     ) {

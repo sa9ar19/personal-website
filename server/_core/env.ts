@@ -1,4 +1,5 @@
 export const ENV = {
+<<<<<<< HEAD
   appId: process.env.VITE_APP_ID ?? "app_personal_website_123",
   cookieSecret:
     process.env.JWT_SECRET ?? "ujmlWkMVOaxOx9GkUO5uYohdqI31ESYOYMof72FlQ6P",
@@ -7,10 +8,17 @@ export const ENV = {
     "postgresql://postgres:YerEDAUGQRxvmIgHZHQbBiNHRRKQmWkl@postgres.railway.internal:5432/railway",
 
   oAuthServerUrl: process.env.OAUTH_SERVER_URL ?? "https://api.manus.im",
+=======
+  appId: process.env.VITE_APP_ID ?? "",
+  cookieSecret: process.env.JWT_SECRET ?? "",
+  databaseUrl: process.env.DATABASE_URL ?? "",
+  oAuthServerUrl: process.env.OAUTH_SERVER_URL ?? "",
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
   ownerOpenId: process.env.OWNER_OPEN_ID ?? "",
   isProduction: process.env.NODE_ENV === "production",
   forgeApiUrl: process.env.BUILT_IN_FORGE_API_URL ?? "",
   forgeApiKey: process.env.BUILT_IN_FORGE_API_KEY ?? "",
+<<<<<<< HEAD
 
   username: process.env.ADMIN_USERNAME ?? "sa9ar",
   password: process.env.ADMIN_PASSWORD ?? "R0s3D@ffodil",
@@ -22,4 +30,6 @@ export const ENV = {
   cloudinaryApiKey: process.env.CLOUDINARY_API_KEY ?? "873821838528726",
   cloudinaryApiSecret:
     process.env.CLOUDINARY_API_SECRET ?? "JK23d1ZiUDMV6zcXk4wCgQRjIaw",
+=======
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 };

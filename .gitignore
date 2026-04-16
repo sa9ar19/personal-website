@@ -9,6 +9,10 @@ build/
 
 # Environment variables
 .env
+<<<<<<< HEAD
+=======
+.env.local
+>>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
 .env.development.local
 .env.test.local
 .env.production.local
