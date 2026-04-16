@@ -160,3 +160,6 @@ export const socialLinks = mysqlTable("social_links", {
 export type SocialLink = typeof socialLinks.$inferSelect;
 export type InsertSocialLink = typeof socialLinks.$inferInsert;
 >>>>>>> d0a6ff7366ca6b6442c6ae10f05246e32109fee5
+
+
+
